@@ -1,0 +1,45 @@
+/* css styles */
+.navbar {
+    background-color: #6E5FFF;
+    color: #ffffff;
+}
+
+.nav-link {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: #ffffff;
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.navbar-logo {
+    max-height: 48px;
+    width: auto;
+    padding-right: 4px;
+}
+
+svg.aa-SubmitIcon {
+    width: 26px;
+    height: 26px;
+    color: #ffffff;
+    opacity: 1;
+}
+
+div.sidebar-item-container .active, div.sidebar-item-container .show>.nav-link, div.sidebar-item-container .sidebar-link>code {
+    color: #000;
+    font-weight: 600;
+}
+
+div.sidebar.sidebar-navigation.rollup.quarto-sidebar-toggle-contents, nav.sidebar.sidebar-navigation:not(.rollup) {
+    background-color: #BA81F4;
+}
+
+.sidebar-navigation a {
+    color: #eeeeee;
+}

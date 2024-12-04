@@ -1,0 +1,32 @@
+project:
+  type: book
+
+book:
+  title: "Preprocesamiento y limpieza de datos"
+  author: "Francisco Palm"
+  date: "2024-12-03"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Inicio
+      - about.qmd
+    search: true
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - analisis_inicial.qmd
+    - estructura.qmd
+    - contenido.qmd
+    - limpieza.qmd
+    - atipicos.qmd
+    - about.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    css: styles.css
+    toc: true
+    lang: es
+

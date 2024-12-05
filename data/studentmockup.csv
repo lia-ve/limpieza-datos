@@ -1,0 +1,11 @@
+Nombre,Edad,Sexo,Materia,Puntuación
+David,12,M,Matemáticas,7
+David,120,M,Castellano,100
+David,12,null,Historia,4
+Ella,13,F,Matemáticas,8
+Ella,13,FM,Castellano,5
+Ella,13,F,Historia,8
+Ella,null,null,null,null
+Harry,12,M,Matemáticas,3
+Harry,12.0,M,Castellano,6
+Harry,12,M,null,9

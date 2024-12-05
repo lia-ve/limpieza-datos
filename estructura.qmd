@@ -2,15 +2,15 @@
 title: "Estructura"
 ---
 
-Se busca detectar y subsanar problemas estructurales relacionados con el formato:
+Durante un análisis preliminar, se debe buscar detectar y correjir problemas estructurales relacionados con el formato del conjunto de datos. Por ejemplo:
 
--   Demasiados campos
+-   Demasiados campos: frecuentemente ocurre con redundancias, o con datos que se pueden concatenar en un solo campo (líneas de dirección, por ejemplo)
 
--   Campos faltantes
+-   Campos faltantes, que quizás se pueden extrapolar de otros campos existentes.
 
 -   Falta de correspondencia entre valores y campos
 
--   Campos mal definidos
+-   Campos mal definidos, quizás con algún problema en el tipo de valor que se utiliza. 
 
 ## Conjunto de Datos *Air Quality*
 
@@ -31,13 +31,13 @@ import pandas as pd
 import numpy as np
 ```
 
-Leemos el conjunto de datos considerando que el separador es `;`.
+Mediante pandas, se puede especificar un separador a la hora de cargar archivos csv. Por lo general, esté va a ser `;`.
 
 ```{python}
 df = pd.read_csv('data/AirQualityUCI.csv', sep=';')
 ```
 
-Usualmente nos interesa verificar la estructura del archivo leído:
+Nos interesa verificar la estructura del archivo leído:
 
 ```{python}
 df.info()
@@ -51,7 +51,7 @@ df
 
 ## Eliminar filas y columnas sobrantes
 
-Quitamos las columnas sobrantes:
+Quitamos las columnas sobrantes, que solo tienen valores nulos:
 
 ```{python}
 df = df.iloc[:, :-2]
@@ -63,7 +63,7 @@ df
 df.info()
 ```
 
-Y las filas sobrantes:
+Y las filas sobrantes, que sobreentendemos por la cantidad de valores no-nulos y la cantidad de entries que se encuentran al partir del indice 9357:
 
 ```{python}
 df = df.iloc[:9357, :]
@@ -77,7 +77,7 @@ Ahora tenemos los datos que realmente nos interesan, con $9357$ filas y $15$ col
 
 ## Guardar como parquet para continuar
 
-Necesitamos un formato que mantenga la información de los tipos de datos, los valores especiales y la estructura, ese formato no es `CSV`.
+Necesitamos un formato que pueda mantener la información de los tipos de datos, los valores especiales y la estructura. Ese formato no es `CSV`. Como estamos utilizando pandas, un formato que conviene utilizar es `parquet`, ya que aparte de poder almacenar esta información, también es bastante más eficiente a nivel de lectura y almacenamiento.
 
 ```{python}
 df.to_parquet("data/air_quality_uci1.parquet")

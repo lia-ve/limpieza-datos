@@ -2,15 +2,15 @@
 title: "Contenido"
 ---
 
-Pueden haber problemas causados por valores incorrectos:
+El contenido del conjunto de datos puede volverse un problema si tiene una cantidad significativa de errores, tales como:
 
--   Uso de distintas codificaciones
+-   Uso de distintas codificaciones (caracteres de idiomas que no utilizan el alfabeto latino, como el coreano o el ruso, por ejemplo)
 
--   Uso inconsistente de minúsculas y mayúsculas
+-   Uso inconsistente de minúsculas y mayúsculas, que causa inconvenientes a la hora de agrupar características
 
 -   Valores faltantes
 
--   Valores atípicos
+-   Valores atípicos (extremadamente lejos de la mediana o el promedio)
 
 ## Un ejemplo
 
@@ -22,6 +22,8 @@ Pueden haber problemas causados por valores incorrectos:
 | 4           | López     | Santiago  | gris           | -1   |
 | 5           | Martínez  | Isabella  | 9              | 102  |
 | 6           | Pérez     | Emma      | azul           | 12   |
+
+Acá se presentan valores atípicos (la edad de Santiago), además de un valor faltante (el color favorito de Valentina). Que otros problemas identíficas?
 
 Volvamos a nuestro ejemplo base:
 
@@ -46,15 +48,17 @@ df.describe()
 
 ## Formato de fechas
 
-Fecha y hora son manejados de una forma mucho más adecuada bajo el formato `datetime`.
+Fecha y hora son manejados de una forma mucho más adecuada bajo el formato `datetime`. Esto permite, dentro de pandas, realizar comparaciones o visualizaciones de una manera más directa y limpia.
 
-Validamos su formato.
+Primero, validemos su formato.
 
 ```{python}
 df[['Date', 'Time']].head()
 ```
 
 Creamos la nueva columna:
+
+Acá lo que se hace es específicar como debería leer la estampilla de tiempo: %d corresponde al día, %m corresponde al més, %Y corresponde al año, y así sucesivamente.
 
 > El sitio <https://strftime.org/> tiene un resumen muy conveniente de los códigos de formato de tiempo en Python.
 
@@ -73,7 +77,7 @@ df[['timestamp']].head()
 
 ## Reordenar columnas
 
-El dataframe se verá mejor con la columna `timestamp` de primera, para lograrlo empecemos por eliminar las columnas `Date` y `Time:`
+El dataframe se verá mejor con la columna `timestamp` puesta en primer lugar de izquierda a derecha. Para lograrlo empecemos por eliminar las columnas `Date` y `Time:`
 
 ```{python}
 df = df.drop(columns=["Date", "Time"])

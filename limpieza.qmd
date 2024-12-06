@@ -2,11 +2,9 @@
 title: "Limpieza de datos"
 ---
 
--   Es la tarea más demandante en ciencia de datos y aprendizaje automático.
--   Consume la mayor parte del tiempo de un proyecto.
--   Todos los conjuntos de datos son "sucios" en algún grado, incluso los más cuidadosamente preparados
--   La calidad de datos y la utilidad no necesariamente están juntas
-    -   Los datos "sucios" pueden ser útiles y los datos pueden ser limpios y ser poco útiles
+-   Es la tarea que consume la mayor cantidad de tiempo en el area de ciencia de datos y aprendizaje automático.
+-   Todos los conjuntos de datos son "sucios" en algún grado, incluso los más cuidadosamente preparados. Es cuestión de encontrar en donde y como.
+-   La calidad de los datos y su utilidad no necesariamente están correlacionados
 
 ```{python}
 import pandas as pd
@@ -17,28 +15,26 @@ import numpy as np
 df = pd.read_parquet("data/air_quality_uci2.parquet")
 ```
 
-Los problemas no son únicamente de limpieza o de contenido, con frecuencia un problema de contenido, conduce a un problema de limpieza o viceversa.
+Con frecuencia, un problema de contenido termina conduciendo a un problema de limpieza, o viceversa. Es buena idea reevaluar el conjunto de datos después de cada transformación.
 
 ## Formato de los valores
 
-Podemos ver que algunas columnas que deberían ser numéricas aparecen como `object`, esto se debe a que el separador de la parte decimal usa coma `,` en lugar de punto `.`
+Podemos ver que algunas columnas que deberían ser numéricas aparecen como `object`. Esto en pandas sucede cuando hay más de un tipo de dato (entero, cadena, float, etc.) dentro de esta columna. 
 
-Esto lo podríamos haber solucionado desde la lectura inicial, haciendo:
-
-``` python
-        df = pd.read_csv('data/AirQualityUCI.csv', sep=';', decimal=',')
-```
-
-Pero como ya hemos avanzado, y sabemos que debemos realizar esta operación en todas las columnas de tipo `object`.
+En este caso, origina durante el proceso de carga, debido a que el separador de la parte decimal utiliza una coma `,` en lugar de un punto `.`:
 
 ```{python}
 df.dtypes
 ```
 
+Como sabemos que todas las columnas son numéricas, solo tenemos que seleccionar las que son `object`.
+
 ```{python}
 object_cols = df.select_dtypes(include='object').columns.tolist()
 object_cols
 ```
+
+Después de cambiar el separador de la parte decimal, realizamos una conversión de datos de cadena a float en estas columnas.
 
 ```{python}
 for col in object_cols:
@@ -46,9 +42,17 @@ for col in object_cols:
 df.info()
 ```
 
-## Marcar faltantes
+No siempre hace falta modificar los datos de esta forma. En este caso, como el conjunto de datos es relativamente sencillo, también lo podríamos haber solucionado desde la lectura inicial, haciendo:
 
-Marquemos los valores faltantes:
+``` python
+        df = pd.read_csv('data/AirQualityUCI.csv', sep=';', decimal=',')
+```
+
+## Valores faltanes
+
+Como se mencionó anteriormente, en este conjunto de datos los valores faltantes están marcados con el numero `-200`. Posteriormente, será más comodo trabajar con estos valores si se les interpeta como nulos en pandas, para no entorpecer procesos de análisis, visualización, o aprendizaje.
+
+Marquemos los valores faltantes, como `np.nan`:
 
 ```{python}
 df = df.replace(-200, np.nan)
@@ -59,7 +63,7 @@ df = df.replace(-200, np.nan)
 df.info()
 ```
 
-Ahora que tenemos los faltantes como `np.nan` pandas los reconoce como faltantes.
+De esta forma, se reconoceran como valores nulos al usar los metodos de pandas.
 
 ## Volvamos a revisar el contenido:
 
@@ -69,13 +73,15 @@ df.describe()
 
 ## Manejo de faltantes
 
+Siempre es bueno preguntarse: 
+
 -   ¿Tiene sentido descartar los faltantes?
 
 -   ¿Tiene sentido imputar los faltantes?
 
-En este caso, se podría o no descartar los faltantes. La proporción de faltantes es relativamente baja, pero aún no sabemos cuáles variables serán relevantes para nuestro modelo, y la construcción de modelos, incluso preliminares ya forman parte del análisis exploratorio.
+En este caso, se podría o no descartar los faltantes. La proporción de faltantes es relativamente baja, pero aún no sabemos cuáles variables serán relevantes para nuestro modelo, o para que se utilizará nuestro modelo. 
 
-De la misma forma, si encontramos patrones consistentes en los valores, podríamos encontrar un criterio confiable para imputar los faltantes, esto es, sustituirlos por un valor numérico.
+Dependiendo del caso de uso, y si encontramos patrones consistentes en el conjunto, se podrían sustituir estos valores nulos por valores númericos, siempre y cuando el criterio para esta sustitución sea confiable (y útil para nuestro modelo).
 
 Guardemos otra vez para continuar:
 

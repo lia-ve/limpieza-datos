@@ -2,27 +2,50 @@
 title: "Análisis Inicial de Datos"
 ---
 
-> Pasos iniciales de un análisis de datos que no responden a las preguntas originales de la investigación
+> ¿Que problemas o limitaciones presenta el conjunto de datos seleccionado para su investigación? 
+
+Muchas veces, el conjunto de datos viene 'sucio', es decir, con información que se determina, generalmente por factores externos, que no representa el objeto de estudio apropiadamente o directamente es invalida.
+
+```{python}
+import pandas as pd
+import numpy as np
+```
+
+```{python}
+df = pd.read_csv("data/studentmockup.csv")
+df
+```
+
+
+El *dataframe* mostrado aquí representa un conjunto de datos bastante sucio. Se sobreentiende, por ejemplo, que la edad y puntuación no deberían ser representadas con valores decimales, o que no es posible que el puntaje del estudiante David llegue a 100.
+
+Durante un projecto de analísis de datos, es posible que se puedan rellenar o corregir datos incorrectos con suficiente contexto. Sin embargo, también es posible que se deban directamente eliminar filas con datos erroneos. Se realiza un análisis inicial tanto para ver cuales y cuantos de estos problemas se presentan en el conjunto, como para establecer una estrategía para manejarlos, que cambiara dependiendo de cual es el objetivo final del analísis.
 
 ## Calidad de los datos
 
-- ¿En qué medida el conjunto de datos es completo, válido, consistente, exacto, pertinente, y apropiado para su propósito.
+- ¿Cuantos de los datos en el conjunto son válidos, consistentes, completos, etcetera? ¿Se encuentran en un formato fácil de manipular y analizar? ¿Servirán para el objetivo final del projecto?
 
-- Aparte de los aspectos de interpretación se verifica la existencia de valores duplicados, valores faltantes, valores atípicos o anomalías en la codificación.
+Como parte de esta evaluación, se verifican la existencia de valores duplicados, faltantes, o atípicos. También se verifica si se presentan anomalías generadas durante la carga o codificación, o durante el proceso de extracción original. 
+
+Dependiendo de donde se hayan encontrado los datos, no es poco probable que ya exista un documento que detalle, por ejemplo, en que estado se encuentran los valores del conjunto, o en que formato se encuentran los valores faltantes.
 
 ## Calidad de las medidas
 
-- Consiste en verificar si la estructura de los instrumentos de medida se corresponde con la estructura reportada.
+- Al recibir el conjunto de datos, comunmente se recibe información acerca de cual columna tiene que valores en que formato. ¿Se observa que corresponden el formato dado para las medidas con sus valores?
 
-- Esto es particularmente importante para análisis experimentales donde se utilizan equipos de alta precisión.
+Esto puede incluir, pero no esta limitado a: verificar el punto decimal (o cuantos decimales tienen los valores), verificar la existencia de valores negativos, verificar el rango de los valores dados.
 
-## Caracterización de la muestra
+Esto es particularmente importante para análisis experimentales donde se utilizan equipos de alta precisión.
 
-Se extraen características de los datos:
+## Extracción de características de los datos
 
-- Utilizando técnicas estadísticas como como medidas de centralidad y dispersión.
+- Previo a un proceso de analísis de datos o aprendizaje reforzado, ¿como se identífican que categorías o características relevantes se encuentran en los datos?
+
+Generalmente se utilizan técnicas estadísticas, como medidas de centralidad y dispersión, auxiliandose con visualizaciones:
 
 - Gráficos como diagramas de dispersión o histogramas de frecuencia que describen la distribución de los datos, ya sea de forma unidimensional o en relación a otras variables.
+
+![Ejemplo de clustering con K-Means (sacado de la documentación de scikit-learn)](images/kmeans_clustering_example.png)
 
 - Tablas cruzadas que reflejen relaciones entre las variables.
 

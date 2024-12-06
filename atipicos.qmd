@@ -1,12 +1,12 @@
 # Valores atípicos
 
-> Los valores atípicos (outliers) son observaciones que se desvían significativamente de otras observaciones en un conjunto de datos. Estas discrepancias pueden ser el resultado de errores en la medición, variaciones naturales o factores inusuales.
+> Los valores atípicos (outliers) son observaciones que se desvían significativamente de otras observaciones en un conjunto de datos. Estas discrepancias pueden ser el resultado de errores en la medición, variaciones naturales de la muestra, factores externos inusuales, entre otros, dependiendo en gran medida del objeto de estudio.
 
 ## Tipos de Valores Atípicos
 
 -   **Univariados**: Valores atípicos en una única variable. Por ejemplo, una temperatura extremadamente alta en un conjunto de datos de temperatura.
 
--   **Multivariados**: Valores atípicos que dependen de la relación entre dos o más variables. Por ejemplo, un nivel de CO2 inusualmente alto en relación con la temperatura y la humedad.
+-   **Multivariados**: Valores atípicos que dependen de la relación entre dos o más variables. Por ejemplo, un nivel de CO2 que resulta inusualmente alto cuando es visto en contexto con la temperatura y la humedad.
 
 ```{python}
 import pandas as pd
@@ -22,6 +22,12 @@ df = pd.read_parquet("data/air_quality_uci3.parquet")
 ### Método del Rango Intercuartílico (IQR)
 
 El método IQR identifica valores atípicos utilizando los cuartiles del conjunto de datos.
+
+Un cuartil es una división del conjunto de datos que corta en tres puntos distintos a lo largo del conjunto (ordenado ya de menor a mayor, o según la frecuencia de cada valor) para terminar con cuatro partes de casi igual tamaño. Estos tres puntos son los cuartiles, y se obtienen a partir de tres medianas: la primera, para el conjunto de datos entero, cortandolo en o cerca de la mitad, y la segunda y tercera, a partir de las dos mitades resultantes.
+
+![Ejemplo de calculo de rango intercuartílico (sacado de geeksforgeeks.org)](images/Interquartile-Range-Calculation.png)
+
+Después de sacar los tres cuartiles, se suele multiplicar el cuartil $Q_1$ y el cuartil $Q_2$ por un factor para buscar valores atípicos en los extremos del conjunto.
 
 **Cálculo**:
 
@@ -60,7 +66,7 @@ outliers_iqr
 
 ### Método de Desviación Estándar
 
-Este método asume que los datos siguen una distribución normal y utiliza la media y la desviación estándar para detectar outliers.
+Este método asume que los datos siguen una distribución normal y utiliza la media y la desviación estándar para detectar outliers. Ambos se pueden calcular mediante pandas sin mayor problema.
 
 **Cálculo**:
 
@@ -100,7 +106,7 @@ outliers_std
 
 Esto implica detectar mediante gráficos a los valores atípicos, generalmente para tener una idea rápida de la cantidad y el tipo de valores atípicos:
 
--   **Boxplots**: Muestran la distribución de datos y resaltan valores atípicos.
+-   **Boxplots**: Muestran la distribución de datos y resaltan valores atípicos. Generalmente se generan a partir del rango intercuartílico descrito anteriormente.
 
 -   **Diagramas de dispersión (scatter plots)**: Útiles para detectar outliers en conjuntos de datos bidimensionales.
 

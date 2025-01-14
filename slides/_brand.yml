@@ -1,0 +1,29 @@
+color:
+  palette:
+    lavanda: "#BA81F4"
+    vinca: "#986EFF"
+    aqua: "#6E5FFF"
+    azul: "#007CFF"
+    gris_claro: "#F2F2F2"
+    gris_oscuro: "#333333"
+  background: gris_claro
+  foreground: gris_oscuro
+  primary: black
+
+logo: 
+  medium: images/logo_lia.png
+
+typography:
+  fonts:
+    - family: Poppins
+      source: google
+    - family: Prompt
+      source: google
+    - family: Sofia Sans
+      source: google
+    - family: DM Mono
+      source: google
+  base: Poppins
+  headings: Sofia Sans
+  monospace: DM Mono
+

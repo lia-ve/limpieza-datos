@@ -30,11 +30,80 @@ Algunos beneficios incluyen:
 
 -   Es un proceso más mecánico y tiene como objetivo asegurar que los datos estén listos para análisis más complejos.
 
+Ejemplo de análisis inicial:
+
+``` python
+import pandas as pd
+
+# Cargar un conjunto de datos
+df = pd.read_csv('datos.csv')
+
+# Ver las primeras filas del conjunto de datos
+print(df.head())
+
+# Ver un resumen estadístico del conjunto de datos
+print(df.describe())
+
+# Verificar valores faltantes
+print(df.isnull().sum())
+
+# Verificar duplicados
+print(df.duplicated().sum())
+
+# Identificar valores atípicos usando el método IQR (Interquartile Range)
+Q1 = df['variable'].quantile(0.25)
+Q3 = df['variable'].quantile(0.75)
+IQR = Q3 - Q1
+outliers = df[(df['variable'] < (Q1 - 1.5 * IQR)) | (df['variable'] > (Q3 + 1.5 * IQR))]
+print(outliers)
+```
+
 ### Análisis Exploratorio de Datos (AED):
 
 -   Se centra en la comprensión más profunda de los patrones, relaciones y tendencias en los datos.
 
 -   Involucra visualizaciones, estadísticas descriptivas avanzadas y modelos iniciales para descubrir información oculta en los datos.
+
+Ejemplo de análisis exploratorio:
+
+``` python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Cargar un conjunto de datos
+df = pd.read_csv('datos.csv')
+
+# Visualizar la distribución de una variable
+sns.histplot(df['variable'], kde=True)
+plt.title('Distribución de la variable')
+plt.show()
+
+# Visualizar la relación entre dos variables
+sns.scatterplot(x='variable1', y='variable2', data=df)
+plt.title('Relación entre variable1 y variable2')
+plt.show()
+
+# Visualizar la correlación entre variables
+correlation_matrix = df.corr()
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+plt.title('Matriz de correlación')
+plt.show()
+
+# Realizar un análisis de componentes principales (PCA)
+from sklearn.decomposition import PCA
+
+pca = PCA(n_components=2)
+principal_components = pca.fit_transform(df)
+principal_df = pd.DataFrame(data=principal_components, columns=['PC1', 'PC2'])
+
+# Visualizar los componentes principales
+sns.scatterplot(x='PC1', y='PC2', data=principal_df)
+plt.title('Componentes principales')
+plt.show()
+```
+
+Claro, aquí tienes las secciones con ejemplos de situaciones cotidianas o aplicaciones:
 
 ## ¿Qué son los datos?
 
@@ -42,13 +111,21 @@ Algunos beneficios incluyen:
 
     -   En general, son secuencias de símbolos que pueden ser interpretados formalmente.
 
+    -   **Ejemplo:** En una aplicación de salud, los datos pueden incluir la frecuencia cardíaca, la presión arterial y el nivel de actividad física de un usuario. Estos valores numéricos y categóricos ayudan a describir el estado de salud del usuario.
+
 -   La palabra «dato» se origina en «dar», y su primer uso fue el de «información de una computadora transmisible y almacenable».
+
+    -   **Ejemplo:** Cuando usas una aplicación de mensajería, cada mensaje que envías o recibes es un dato que se almacena y transmite entre dispositivos.
 
 ## ¿Qué se quiere decir con «exploratorio»?
 
 -   Hace referencia a las técnicas de análisis de datos que nos sirven de guía para establecer un primer contacto con los datos.
 
+    -   **Ejemplo:** En una tienda de ropa, el análisis exploratorio puede implicar revisar las ventas diarias para identificar patrones iniciales, como cuáles productos se venden más en ciertos días de la semana.
+
 -   El objetivo es contar con más y mejores elementos para planificar los análisis posteriores, lo cuál implica formular las primeras hipótesis como alinear las transformaciones que requieren las técnicas especializadas.
+
+    -   **Ejemplo:** En una plataforma de streaming, el análisis exploratorio puede ayudar a identificar qué géneros de películas son más populares entre los usuarios, lo que puede guiar futuras decisiones de contenido.
 
 ## ¿Estadística descriptiva glorificada?
 
@@ -56,12 +133,32 @@ Aunque en el análisis exploratorio se utilizan conceptos de estadística descri
 
 > Es fundamental el conocimiento del **dato como valor codificado en un sistema de cómputo** para entender muchos pasos y técnicas del análisis exploratorio.
 
+-   **Ejemplo:** En una aplicación de finanzas personales, los datos sobre ingresos y gastos se codifican y almacenan en el sistema. El análisis exploratorio puede incluir calcular promedios mensuales de gastos y visualizar estos datos en gráficos para ayudar al usuario a entender mejor sus hábitos financieros.
+
 ## Nomenclatura
 
--   Característica, campo, medición, columna y variable se usan de manera similar.
--   Fila, registro, observación y muestra también son casi sinónimos.
+-   **Característica, campo, medición, columna y variable** se usan de manera similar.
+-   **Fila, registro, observación y muestra** también son casi sinónimos.
+
+### Ejemplos:
+
+1.  **Datos de un formulario de inscripción**:
+    -   En un formulario de inscripción para un evento, cada **campo** (como "Nombre", "Edad", "Correo electrónico") representa una **característica** o **variable** del participante. Cada **fila** del conjunto de datos corresponde a un **registro** o **observación** (un participante individual).
+2.  **Datos de un inventario de productos**:
+    -   En un inventario, cada **columna** representa una **medición** o **atributo** del producto (como "Nombre del producto", "Cantidad", "Precio"). Cada **fila** corresponde a un **registro** o **observación** (un producto individual).
+3.  **Datos de un informe de ventas**:
+    -   En un informe de ventas, cada **columna** representa una **característica** de la transacción (como "Fecha", "Producto", "Cantidad vendida", "Ingresos"). Cada **fila** corresponde a una **observación** o **registro** de una transacción individual.
+4.  **Datos de un estudio médico**:
+    -   En un estudio médico, cada **columna** representa una **variable** o **medición** del paciente (como "Edad", "Peso", "Presión arterial"). Cada **fila** corresponde a una **observación** o **registro** de un paciente individual.
 
 Los datos generalmente representan mediciones de atributos de un "objeto" común, normalmente organizados en filas (observaciones) y columnas (características). Vale tener cuidado con:
 
--   Conceptos generales e implementaciones específicas ("data frame" vs "DataFrame"), un dataframe de pandas no es exactamente igual a uno de pyspark, o polars.
--   Términos genéricos como "data set" y objetos específicos como "dataset" en HDF5.
+-   **Conceptos generales e implementaciones específicas** ("data frame" vs "DataFrame"), un dataframe de pandas no es exactamente igual a uno de pyspark, o polars.
+
+### Ejemplos:
+
+1.  **"Data frame" vs "DataFrame"**:
+    -   En general, un *Data Frame* (no hay ninguna traducción al español de uso generalizado) es una estructura de datos tabular de **Datos Ordenados** que organiza los datos en filas y columnas, en donde cada columna corresponde a una variable en paticular, y cada fila se corresponde a una observación.
+    -   En **Pandas**, un `DataFrame` es un objeto que representa un *Data Frame* al que se le agregan etiquetas a las filas y columnas, y las operaciones aritméticas se alinean de acuerdo a esas etiquetas. Está implementado como un conjunto de `Series` (esto es, vectores con un índice de etiquetas) del mismo tamaño.
+2.  **"Data set" vs "dataset" en HDF5**:
+    -   Un **data set** es un término genérico que se refiere a un conjunto de datos. En cambio, en el formato **HDF5**, un "dataset" es un objeto específico que almacena datos en un archivo jerárquico, similar a un archivo de Excel pero optimizado para grandes volúmenes de datos.

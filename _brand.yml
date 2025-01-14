@@ -17,6 +17,8 @@ typography:
   fonts:
     - family: Poppins
       source: google
+    - family: Prompt
+      source: google
     - family: Sofia Sans
       source: google
     - family: DM Mono

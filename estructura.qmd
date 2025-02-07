@@ -2,7 +2,7 @@
 title: "Estructura"
 ---
 
-Durante un análisis preliminar, se debe buscar detectar y correjir problemas estructurales relacionados con el formato del conjunto de datos. Por ejemplo:
+Durante un análisis preliminar, se debe buscar detectar y corregir problemas estructurales relacionados con el formato del conjunto de datos. Por ejemplo:
 
 -   Demasiados campos: frecuentemente ocurre con redundancias, o con datos que se pueden concatenar en un solo campo (líneas de dirección, por ejemplo)
 

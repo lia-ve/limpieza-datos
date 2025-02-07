@@ -2,7 +2,7 @@
 title: "Análisis Inicial de Datos"
 ---
 
-> ¿Que problemas o limitaciones presenta el conjunto de datos seleccionado para su investigación? 
+> ¿Qué problemas o limitaciones presenta el conjunto de datos seleccionado para su investigación? 
 
 Muchas veces, el conjunto de datos viene 'sucio', es decir, con información que se determina, generalmente por factores externos, que no representa el objeto de estudio apropiadamente o directamente es invalida.
 
@@ -19,11 +19,11 @@ df
 
 El *dataframe* mostrado aquí representa un conjunto de datos bastante sucio. Se sobreentiende, por ejemplo, que la edad y puntuación no deberían ser representadas con valores decimales, o que no es posible que el puntaje del estudiante David llegue a 100.
 
-Durante un projecto de analísis de datos, es posible que se puedan rellenar o corregir datos incorrectos con suficiente contexto. Sin embargo, también es posible que se deban directamente eliminar filas con datos erroneos. Se realiza un análisis inicial tanto para ver cuales y cuantos de estos problemas se presentan en el conjunto, como para establecer una estrategía para manejarlos, que cambiara dependiendo de cual es el objetivo final del analísis.
+Durante un proyecto de análisis de datos, es posible que se puedan rellenar o corregir datos incorrectos con suficiente contexto. Sin embargo, también es posible que se deban directamente eliminar filas con datos erróneos. Se realiza un análisis inicial tanto para ver cuales y cuantos de estos problemas se presentan en el conjunto, como para establecer una estrategia para manejarlos, que cambiara dependiendo de cual es el objetivo final del análisis.
 
 ## Calidad de los datos
 
-- ¿Cuantos de los datos en el conjunto son válidos, consistentes, completos, etcetera? ¿Se encuentran en un formato fácil de manipular y analizar? ¿Servirán para el objetivo final del projecto?
+- ¿Cuántos de los datos en el conjunto son válidos, consistentes, completos, etcetera? ¿Se encuentran en un formato fácil de manipular y analizar? ¿Servirán para el objetivo final del proyecto?
 
 Como parte de esta evaluación, se verifican la existencia de valores duplicados, faltantes, o atípicos. También se verifica si se presentan anomalías generadas durante la carga o codificación, o durante el proceso de extracción original. 
 
@@ -31,7 +31,7 @@ Dependiendo de donde se hayan encontrado los datos, no es poco probable que ya e
 
 ## Calidad de las medidas
 
-- Al recibir el conjunto de datos, comunmente se recibe información acerca de cual columna tiene que valores en que formato. ¿Se observa que corresponden el formato dado para las medidas con sus valores?
+- Al recibir el conjunto de datos, comúnmente se recibe información acerca de cual columna tiene que valores en que formato. ¿Se observa que corresponden el formato dado para las medidas con sus valores?
 
 Esto puede incluir, pero no esta limitado a: verificar el punto decimal (o cuantos decimales tienen los valores), verificar la existencia de valores negativos, verificar el rango de los valores dados.
 
@@ -39,9 +39,9 @@ Esto es particularmente importante para análisis experimentales donde se utiliz
 
 ## Extracción de características de los datos
 
-- Previo a un proceso de analísis de datos o aprendizaje reforzado, ¿como se identífican que categorías o características relevantes se encuentran en los datos?
+- Previo a un proceso de análisis de datos o aprendizaje reforzado, ¿cómo se identifican que categorías o características relevantes se encuentran en los datos?
 
-Generalmente se utilizan técnicas estadísticas, como medidas de centralidad y dispersión, auxiliandose con visualizaciones:
+Generalmente se utilizan técnicas estadísticas, como medidas de centralidad y dispersión, auxiliándose con visualizaciones:
 
 - Gráficos como diagramas de dispersión o histogramas de frecuencia que describen la distribución de los datos, ya sea de forma unidimensional o en relación a otras variables.
 

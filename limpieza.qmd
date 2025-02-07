@@ -50,7 +50,7 @@ No siempre hace falta modificar los datos de esta forma. En este caso, como el c
 
 ## Valores faltanes
 
-Como se mencionó anteriormente, en este conjunto de datos los valores faltantes están marcados con el numero `-200`. Posteriormente, será más comodo trabajar con estos valores si se les interpeta como nulos en pandas, para no entorpecer procesos de análisis, visualización, o aprendizaje.
+Como se mencionó anteriormente, en este conjunto de datos los valores faltantes están marcados con el numero `-200`. Posteriormente, será más cómodo trabajar con estos valores si se les interpreta como nulos en pandas, para no entorpecer procesos de análisis, visualización, o aprendizaje.
 
 Marquemos los valores faltantes, como `np.nan`:
 
@@ -63,7 +63,7 @@ df = df.replace(-200, np.nan)
 df.info()
 ```
 
-De esta forma, se reconoceran como valores nulos al usar los metodos de pandas.
+De esta forma, se reconocerán como valores nulos al usar los métodos de pandas.
 
 ## Volvamos a revisar el contenido:
 
@@ -81,7 +81,7 @@ Siempre es bueno preguntarse:
 
 En este caso, se podría o no descartar los faltantes. La proporción de faltantes es relativamente baja, pero aún no sabemos cuáles variables serán relevantes para nuestro modelo, o para que se utilizará nuestro modelo. 
 
-Dependiendo del caso de uso, y si encontramos patrones consistentes en el conjunto, se podrían sustituir estos valores nulos por valores númericos, siempre y cuando el criterio para esta sustitución sea confiable (y útil para nuestro modelo).
+Dependiendo del caso de uso, y si encontramos patrones consistentes en el conjunto, se podrían sustituir estos valores nulos por valores numéricos, siempre y cuando el criterio para esta sustitución sea confiable (y útil para nuestro modelo).
 
 Guardemos otra vez para continuar:
 

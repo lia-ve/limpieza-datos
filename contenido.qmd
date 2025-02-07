@@ -23,7 +23,7 @@ El contenido del conjunto de datos puede volverse un problema si tiene una canti
 | 5           | Martínez  | Isabella  | 9              | 102  |
 | 6           | Pérez     | Emma      | azul           | 12   |
 
-Acá se presentan valores atípicos (la edad de Santiago), además de un valor faltante (el color favorito de Valentina). Que otros problemas identíficas?
+Acá se presentan valores atípicos (la edad de Santiago), además de un valor faltante (el color favorito de Valentina). ¿Qué otros problemas identificas?
 
 Volvamos a nuestro ejemplo base:
 
@@ -58,7 +58,7 @@ df[['Date', 'Time']].head()
 
 Creamos la nueva columna:
 
-Acá lo que se hace es específicar como debería leer la estampilla de tiempo: %d corresponde al día, %m corresponde al més, %Y corresponde al año, y así sucesivamente.
+Acá lo que se hace es especificar como debería leer la estampilla de tiempo: %d corresponde al día, %m corresponde al més, %Y corresponde al año, y así sucesivamente.
 
 > El sitio <https://strftime.org/> tiene un resumen muy conveniente de los códigos de formato de tiempo en Python.
 
